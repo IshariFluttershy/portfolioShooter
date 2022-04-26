@@ -37,6 +37,9 @@ public class player : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
         weapon = GetComponent<WeaponBehavior>();
+        Sprite newSprite = Resources.Load<Sprite>(PlayerPrefs.GetString("PlayerSpritePath"));
+        print(PlayerPrefs.GetString("PlayerSpritePath"));
+        renderer.sprite = newSprite;
     }
 
     // Update is called once per frame
@@ -46,19 +49,23 @@ public class player : MonoBehaviour
 
          if (Input.GetKey(KeyCode.RightArrow))
          {
-             velocity += Vector3.right;
+            if (transform.position.x < 6.6f)
+                velocity += Vector3.right;
          }
          if (Input.GetKey(KeyCode.LeftArrow))
          {
-             velocity += Vector3.left;
+            if (transform.position.x > -6.6f)
+                velocity += Vector3.left;
          }
          if (Input.GetKey(KeyCode.UpArrow))
          {
-             velocity += Vector3.up;
+            if (transform.position.y < 9.0f)
+                velocity += Vector3.up;
          }
          if (Input.GetKey(KeyCode.DownArrow))
          {
-             velocity += Vector3.down;
+            if (transform.position.y > -9.0f)
+                velocity += Vector3.down;
          }
 
         if (Input.GetKey(KeyCode.Space))
